@@ -161,11 +161,10 @@ class ApiProvider {
     throw '';
   }
 
-  Future<List<Drink>> filterByIngredient(String alcoholicOption) async {
+  Future<List<Drink>> filterByIngredient(String ingredientName) async {
     Drinks drinks;
     try {
-      final response =
-          await _dio.get('$_baseUrl/filter.php?i=$alcoholicOption');
+      final response = await _dio.get('$_baseUrl/filter.php?i=$ingredientName');
       if (response.statusCode == 200) {
         drinks = Drinks.fromMap(response.data);
         // Sort title
