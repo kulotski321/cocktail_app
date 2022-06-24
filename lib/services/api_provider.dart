@@ -99,4 +99,24 @@ class ApiProvider {
     }
     throw '';
   }
+
+  Future<List<Drink>> filterByCategory(String categoryName) async {
+    Drinks drinks;
+    try {
+      final response = await _dio.get('$_baseUrl/filter.php?c=$categoryName');
+      if (response.statusCode == 200) {
+        drinks = Drinks.fromMap(response.data);
+        // Sort ingredients
+        drinks.drinks.sort(
+          (a, b) => a.title.toString().toLowerCase().compareTo(
+                b.title.toString().toLowerCase(),
+              ),
+        );
+        return drinks.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
 }
