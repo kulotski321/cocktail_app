@@ -8,6 +8,7 @@ class Drink extends Equatable {
   final String? category;
   final String? alcholic;
   final String? glass;
+  final String? ingredients;
   final String? instructions;
   final String? thumbnail;
 
@@ -17,6 +18,7 @@ class Drink extends Equatable {
     this.category,
     this.alcholic,
     this.glass,
+    this.ingredients,
     this.instructions,
     this.thumbnail,
   });
@@ -27,6 +29,7 @@ class Drink extends Equatable {
     String? category,
     String? alcholic,
     String? glass,
+    String? ingredients,
     String? instructions,
     String? thumbnail,
   }) {
@@ -36,6 +39,7 @@ class Drink extends Equatable {
       category: category ?? this.category,
       alcholic: alcholic ?? this.alcholic,
       glass: glass ?? this.glass,
+      ingredients: ingredients ?? this.ingredients,
       instructions: instructions ?? this.instructions,
       thumbnail: thumbnail ?? this.thumbnail,
     );
@@ -48,6 +52,7 @@ class Drink extends Equatable {
       'strCategory': category,
       'strAlcoholic': alcholic,
       'strGlass': glass,
+      'strIngredient1': ingredients,
       'strInstructions': instructions,
       'strDrinkThumb': thumbnail,
     };
@@ -60,6 +65,7 @@ class Drink extends Equatable {
       category: map['strCategory'],
       alcholic: map['strAlcoholic'],
       glass: map['strGlass'],
+      ingredients: map['strIngredient1'],
       instructions: map['strInstructions'],
       thumbnail: map['strDrinkThumb'],
     );
@@ -80,6 +86,7 @@ class Drink extends Equatable {
       category ?? '',
       alcholic ?? '',
       glass ?? '',
+      ingredients ?? '',
       instructions ?? '',
       thumbnail ?? '',
     ];
