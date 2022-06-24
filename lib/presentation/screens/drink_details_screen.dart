@@ -60,7 +60,7 @@ class DrinkDetailsScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                   child: Text(
                     title,
                     style: const TextStyle(
@@ -71,6 +71,45 @@ class DrinkDetailsScreen extends StatelessWidget {
                     overflow: TextOverflow.clip,
                     maxLines: 3,
                   ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Wrap(
+                  runSpacing: 8.0,
+                  spacing: 8.0,
+                  children: [
+                    Chip(
+                      avatar: const Icon(Icons.category),
+                      label: Text(
+                        drink.category.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      avatar: const Icon(Icons.sports_bar),
+                      label: Text(
+                        drink.glass.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      avatar: const Icon(Icons.water_drop),
+                      label: Text(
+                        drink.alcholic.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
