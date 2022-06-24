@@ -1,5 +1,6 @@
 import 'package:cocktail_app/blocs/alcoholic/alcoholic_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
+import 'package:cocktail_app/presentation/widgets/custom_list_tile.dart';
 import 'package:cocktail_app/presentation/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _AlcoholicTabState extends State<AlcoholicTab>
             if (state is AlcoholicInitial || state is AlcoholicLoading) {
               return _buildLoading();
             } else if (state is AlcoholicLoaded) {
-              return _buildHome(context, state.alcoholics);
+              return _buildHome(state.alcoholics, DrinkFieldType.alcoholic);
             } else if (state is AlcoholicError) {
               return Container();
             } else {
@@ -46,20 +47,11 @@ class _AlcoholicTabState extends State<AlcoholicTab>
     );
   }
 
-  Widget _buildHome(BuildContext context, List<Drink> glasses) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: ListView.builder(
-        itemCount: glasses.length,
-        itemBuilder: ((context, index) {
-          return Text(
-            glasses[index].alcholic.toString(),
-            style: const TextStyle(fontSize: 14),
-          );
-        }),
-      ),
-    );
-  }
+  Widget _buildHome(List<Drink> list, DrinkFieldType drinkFieldType) =>
+      CustomListTile(
+        list: list,
+        drinkFieldType: drinkFieldType,
+      );
 
   Widget _buildLoading() => const CustomLoading();
 }
