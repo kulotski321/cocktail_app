@@ -26,6 +26,12 @@ class ApiProvider {
       final response = await _dio.get('$_baseUrl/list.php?c=list');
       if (response.statusCode == 200) {
         categories = Drinks.fromMap(response.data);
+        // Sort categories
+        categories.drinks.sort(
+          (a, b) => a.category.toString().toLowerCase().compareTo(
+                b.category.toString().toLowerCase(),
+              ),
+        );
         return categories.drinks;
       }
     } catch (error, stacktrace) {
@@ -40,6 +46,12 @@ class ApiProvider {
       final response = await _dio.get('$_baseUrl/list.php?g=list');
       if (response.statusCode == 200) {
         glasses = Drinks.fromMap(response.data);
+        // Sort glasses
+        glasses.drinks.sort(
+          (a, b) => a.glass.toString().toLowerCase().compareTo(
+                b.glass.toString().toLowerCase(),
+              ),
+        );
         return glasses.drinks;
       }
     } catch (error, stacktrace) {
@@ -54,6 +66,12 @@ class ApiProvider {
       final response = await _dio.get('$_baseUrl/list.php?a=list');
       if (response.statusCode == 200) {
         alcoholic = Drinks.fromMap(response.data);
+        // Sort alcoholics
+        alcoholic.drinks.sort(
+          (a, b) => a.alcholic.toString().toLowerCase().compareTo(
+                b.alcholic.toString().toLowerCase(),
+              ),
+        );
         return alcoholic.drinks;
       }
     } catch (error, stacktrace) {
@@ -68,6 +86,12 @@ class ApiProvider {
       final response = await _dio.get('$_baseUrl/list.php?i=list');
       if (response.statusCode == 200) {
         ingredients = Drinks.fromMap(response.data);
+        // Sort ingredients
+        ingredients.drinks.sort(
+          (a, b) => a.ingredients.toString().toLowerCase().compareTo(
+                b.ingredients.toString().toLowerCase(),
+              ),
+        );
         return ingredients.drinks;
       }
     } catch (error, stacktrace) {
