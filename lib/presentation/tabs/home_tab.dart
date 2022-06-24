@@ -50,43 +50,105 @@ class _HomeTabState extends State<HomeTab>
   }
 
   Widget _buildHome(BuildContext context, Drink drink) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 50,
-            width: 50,
+    var imagePreview = '${drink.thumbnail}';
+    var title = drink.title.toString();
+    var instructions = drink.instructions.toString();
+    return SingleChildScrollView(
+      child: Center(
+        child: Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                height: 300,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                imageUrl: imagePreview,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontFamily: 'Work Sans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 21,
+                    ),
+                    overflow: TextOverflow.clip,
+                    maxLines: 3,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Wrap(
+                  runSpacing: 8.0,
+                  spacing: 8.0,
+                  children: [
+                    Chip(
+                      avatar: const Icon(Icons.category),
+                      label: Text(
+                        drink.category.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      avatar: const Icon(Icons.sports_bar),
+                      label: Text(
+                        drink.glass.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    Chip(
+                      avatar: const Icon(Icons.water_drop),
+                      label: Text(
+                        drink.alcholic.toString(),
+                        style: const TextStyle(
+                          fontFamily: 'Work Sans',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Text(
+                    instructions,
+                    style: const TextStyle(
+                      fontFamily: 'Work Sans',
+                      fontSize: 17,
+                    ),
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: ElevatedButton(
+                    onPressed: () =>
+                        context.read<RandomBloc>().add(GetRandomDrink()),
+                    child: const Text('get random drink'),
+                  ),
+                ),
+              )
+            ],
           ),
-          CachedNetworkImage(
-            height: 300,
-            width: 300,
-            imageUrl: drink.thumbnail ?? "http://via.placeholder.com/300x300",
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            drink.title.toString(),
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            drink.instructions.toString(),
-            style: const TextStyle(
-              fontSize: 14,
-            ),
-          ),
-          const SizedBox(
-            height: 64,
-          ),
-          ElevatedButton(
-              onPressed: () => context.read<RandomBloc>().add(GetRandomDrink()),
-              child: const Text('get random drink'))
-        ],
+        ),
       ),
     );
   }
