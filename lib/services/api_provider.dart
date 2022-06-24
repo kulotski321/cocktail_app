@@ -106,7 +106,27 @@ class ApiProvider {
       final response = await _dio.get('$_baseUrl/filter.php?c=$categoryName');
       if (response.statusCode == 200) {
         drinks = Drinks.fromMap(response.data);
-        // Sort ingredients
+        // Sort title
+        drinks.drinks.sort(
+          (a, b) => a.title.toString().toLowerCase().compareTo(
+                b.title.toString().toLowerCase(),
+              ),
+        );
+        return drinks.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
+
+  Future<List<Drink>> filterByGlass(String glassName) async {
+    Drinks drinks;
+    try {
+      final response = await _dio.get('$_baseUrl/filter.php?g=$glassName');
+      if (response.statusCode == 200) {
+        drinks = Drinks.fromMap(response.data);
+        // Sort title
         drinks.drinks.sort(
           (a, b) => a.title.toString().toLowerCase().compareTo(
                 b.title.toString().toLowerCase(),
