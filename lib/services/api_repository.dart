@@ -23,6 +23,22 @@ class ApiRepository {
   Future<List<Drink>> fetchIngredients() {
     return _provider.fetchIngredients();
   }
+
+  Future<List<Drink>> filterByCategory(String categoryName) {
+    return _provider.filterByCategory(categoryName);
+  }
+
+  Future<List<Drink>> filterByGlass(String glassName) {
+    return _provider.filterByGlass(glassName);
+  }
+
+  Future<List<Drink>> filterByAlcoholic(String alcoholicOption) {
+    return _provider.filterByAlcoholic(alcoholicOption);
+  }
+
+  Future<List<Drink>> filterByIngredient(String ingredientName) {
+    return _provider.filterByIngredient(ingredientName);
+  }
 }
 
 class NetworkError extends Error {}
