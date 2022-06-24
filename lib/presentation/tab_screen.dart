@@ -1,4 +1,5 @@
 import 'package:cocktail_app/presentation/category_tab.dart';
+import 'package:cocktail_app/presentation/glass_tab.dart';
 import 'package:cocktail_app/presentation/home_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _TabScreenState extends State<TabScreen> {
         children: const [
           HomeTab(),
           CategoryTab(),
-          Text('home'),
+          GlassTab(),
           Text('home'),
           Text('home'),
         ],

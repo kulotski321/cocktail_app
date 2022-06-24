@@ -1,4 +1,4 @@
-import 'package:cocktail_app/bloc/category/category_bloc.dart';
+import 'package:cocktail_app/blocs/category/category_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +17,7 @@ class _CategoryTabState extends State<CategoryTab>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocProvider(
       create: (context) => CategoryBloc()..add(GetAllCategories()),
       child: BlocListener<CategoryBloc, CategoryState>(
