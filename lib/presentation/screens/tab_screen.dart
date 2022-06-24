@@ -57,11 +57,11 @@ class _TabScreenState extends State<TabScreen> {
             label: 'Category',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_drink),
+            icon: Icon(Icons.sports_bar),
             label: 'Glass',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_bar),
+            icon: Icon(Icons.water_drop),
             label: 'Alcoholic',
           ),
           BottomNavigationBarItem(
