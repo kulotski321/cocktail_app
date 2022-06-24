@@ -7,6 +7,10 @@ class ApiRepository {
   Future<Drink> fetchRandomDrink() {
     return _provider.fetchRandomDrink();
   }
+
+  Future<List<Drink>> fetchCategories() {
+    return _provider.fetchCategories();
+  }
 }
 
 class NetworkError extends Error {}

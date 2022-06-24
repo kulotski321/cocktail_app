@@ -19,4 +19,18 @@ class ApiProvider {
     }
     throw '';
   }
+
+  Future<List<Drink>> fetchCategories() async {
+    Drinks categories;
+    try {
+      final response = await _dio.get('$_baseUrl/list.php?c=list');
+      if (response.statusCode == 200) {
+        categories = Drinks.fromMap(response.data);
+        return categories.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
 }
