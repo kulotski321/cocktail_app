@@ -7,12 +7,12 @@ class ApiProvider {
   final String _baseUrl = 'https://www.thecocktaildb.com/api/json/v1/1';
 
   Future<Drink> fetchRandomDrink() async {
-    Drinks allDrinks;
+    Drinks randomDrink;
     try {
       final response = await _dio.get('$_baseUrl/random.php');
       if (response.statusCode == 200) {
-        allDrinks = Drinks.fromMap(response.data);
-        return allDrinks.drinks[0];
+        randomDrink = Drinks.fromMap(response.data);
+        return randomDrink.drinks[0];
       }
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");
