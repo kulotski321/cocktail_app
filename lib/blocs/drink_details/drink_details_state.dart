@@ -12,11 +12,9 @@ class DrinkDetailsInitial extends DrinkDetailsState {}
 class DrinkDetailsLoading extends DrinkDetailsState {}
 
 class DrinkDetailsLoaded extends DrinkDetailsState {
-  final List<Drink> drinks;
+  final Drink drink;
 
-  const DrinkDetailsLoaded({
-    required this.drinks,
-  });
+  const DrinkDetailsLoaded({required this.drink});
 }
 
 class DrinkDetailsError extends DrinkDetailsState {

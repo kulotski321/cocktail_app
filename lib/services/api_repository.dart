@@ -40,7 +40,7 @@ class ApiRepository {
     return _provider.filterByIngredient(ingredientName);
   }
 
-  Future<List<Drink>> fetchDrinkDetails(String drinkName) {
+  Future<Drink> fetchDrinkDetails(String drinkName) {
     return _provider.fetchDrinkDetails(drinkName);
   }
 }

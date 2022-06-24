@@ -13,8 +13,8 @@ class DrinkDetailsBloc extends Bloc<DrinkDetailsEvent, DrinkDetailsState> {
     on<SearchByDrinkName>((event, emit) async {
       try {
         emit(DrinkDetailsLoading());
-        final drinks = await apiRepository.fetchDrinkDetails(event.drinkName);
-        emit(DrinkDetailsLoaded(drinks: drinks));
+        final drink = await apiRepository.fetchDrinkDetails(event.drinkName);
+        emit(DrinkDetailsLoaded(drink: drink));
       } on NetworkError {
         emit(const DrinkDetailsError(
           message: 'Failed to fetch data. Is your device online?',
