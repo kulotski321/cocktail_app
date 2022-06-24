@@ -1,7 +1,6 @@
-import 'package:cocktail_app/blocs/category/category_bloc.dart';
 import 'package:cocktail_app/blocs/drink_list/drink_list_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
-import 'package:cocktail_app/presentation/drink_list_screen.dart';
+import 'package:cocktail_app/presentation/screens/drink_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

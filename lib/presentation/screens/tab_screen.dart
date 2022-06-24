@@ -1,8 +1,8 @@
-import 'package:cocktail_app/presentation/alcoholic_tab.dart';
-import 'package:cocktail_app/presentation/category_tab.dart';
-import 'package:cocktail_app/presentation/glass_tab.dart';
-import 'package:cocktail_app/presentation/home_tab.dart';
-import 'package:cocktail_app/presentation/ingredient_tab.dart';
+import 'package:cocktail_app/presentation/tabs/alcoholic_tab.dart';
+import 'package:cocktail_app/presentation/tabs/category_tab.dart';
+import 'package:cocktail_app/presentation/tabs/glass_tab.dart';
+import 'package:cocktail_app/presentation/tabs/home_tab.dart';
+import 'package:cocktail_app/presentation/tabs/ingredient_tab.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {

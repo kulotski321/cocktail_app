@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
 import 'package:cocktail_app/services/api_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'drink_list_event.dart';
 part 'drink_list_state.dart';
