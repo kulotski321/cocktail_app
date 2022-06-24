@@ -1,3 +1,4 @@
+import 'package:cocktail_app/presentation/category_tab.dart';
 import 'package:cocktail_app/presentation/home_tab.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class _TabScreenState extends State<TabScreen> {
         onPageChanged: _onPageChanged,
         children: const [
           HomeTab(),
-          Text('home'),
+          CategoryTab(),
           Text('home'),
           Text('home'),
           Text('home'),
