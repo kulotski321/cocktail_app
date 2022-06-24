@@ -85,11 +85,3 @@ class Drink extends Equatable {
     ];
   }
 }
-
-//  idDrink: map['idDrink'],
-//       strDrink: map['strDrink'],
-//       strCategory: map['strCategory'],
-//       strAlcoholic: map['strAlcoholic'],
-//       strGlass: map['strGlass'],
-//       strInstructions: map['strInstructions'],
-//       strDrinkThumb: map['strDrinkThumb'],
