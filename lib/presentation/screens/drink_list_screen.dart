@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cocktail_app/blocs/drink_details/drink_details_bloc.dart';
 import 'package:cocktail_app/blocs/drink_list/drink_list_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
+import 'package:cocktail_app/presentation/screens/drink_details_screen.dart';
 import 'package:cocktail_app/presentation/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,32 +54,47 @@ class DrinkListScreen extends StatelessWidget {
             children: List.generate(drinks.length, (index) {
               var imagePreview = '${drinks[index].thumbnail}';
               var title = drinks[index].title.toString();
-              return Card(
-                elevation: 4,
-                child: Expanded(
-                  child: Column(
-                    children: [
-                      CachedNetworkImage(
-                        height: 130,
-                        width: 130,
-                        fit: BoxFit.cover,
-                        imageUrl: imagePreview,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => DrinkDetailsBloc()
+                        ..add(SearchByDrinkName(drinkName: title)),
+                      child: DrinkDetailsScreen(
+                        title: title,
                       ),
-                      SizedBox(
-                        width: 130,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            title,
-                            style: const TextStyle(fontWeight: FontWeight.w500),
-                            overflow: TextOverflow.clip,
-                            maxLines: 3,
+                    ),
+                  ),
+                ),
+                child: Card(
+                  elevation: 4,
+                  child: Expanded(
+                    child: Column(
+                      children: [
+                        CachedNetworkImage(
+                          height: 130,
+                          width: 130,
+                          fit: BoxFit.cover,
+                          imageUrl: imagePreview,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+                        SizedBox(
+                          width: 130,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              title,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w500),
+                              overflow: TextOverflow.clip,
+                              maxLines: 3,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );
