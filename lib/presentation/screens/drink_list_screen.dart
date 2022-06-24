@@ -74,20 +74,20 @@ class DrinkListScreen extends StatelessWidget {
                       children: [
                         CachedNetworkImage(
                           height: 130,
-                          width: 130,
+                          width: MediaQuery.of(context).size.width / 2.5,
                           fit: BoxFit.cover,
                           imageUrl: imagePreview,
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ),
                         SizedBox(
-                          width: 130,
+                          width: MediaQuery.of(context).size.width / 2.5,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               title,
                               style:
-                                  const TextStyle(fontWeight: FontWeight.w500),
+                                  const TextStyle(fontWeight: FontWeight.bold),
                               overflow: TextOverflow.clip,
                               maxLines: 3,
                             ),
