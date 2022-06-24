@@ -11,6 +11,18 @@ class ApiRepository {
   Future<List<Drink>> fetchCategories() {
     return _provider.fetchCategories();
   }
+
+  Future<List<Drink>> fetchGlasses() {
+    return _provider.fetchGlasses();
+  }
+
+  Future<List<Drink>> fetchAlcoholics() {
+    return _provider.fetchAlcoholics();
+  }
+
+  Future<List<Drink>> fetchIngredients() {
+    return _provider.fetchIngredients();
+  }
 }
 
 class NetworkError extends Error {}

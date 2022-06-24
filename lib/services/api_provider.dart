@@ -33,4 +33,46 @@ class ApiProvider {
     }
     throw '';
   }
+
+  Future<List<Drink>> fetchGlasses() async {
+    Drinks glasses;
+    try {
+      final response = await _dio.get('$_baseUrl/list.php?g=list');
+      if (response.statusCode == 200) {
+        glasses = Drinks.fromMap(response.data);
+        return glasses.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
+
+  Future<List<Drink>> fetchAlcoholics() async {
+    Drinks alcoholic;
+    try {
+      final response = await _dio.get('$_baseUrl/list.php?a=list');
+      if (response.statusCode == 200) {
+        alcoholic = Drinks.fromMap(response.data);
+        return alcoholic.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
+
+  Future<List<Drink>> fetchIngredients() async {
+    Drinks ingredients;
+    try {
+      final response = await _dio.get('$_baseUrl/list.php?a=list');
+      if (response.statusCode == 200) {
+        ingredients = Drinks.fromMap(response.data);
+        return ingredients.drinks;
+      }
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+    }
+    throw '';
+  }
 }
