@@ -69,32 +69,29 @@ class DrinkListScreen extends StatelessWidget {
                 ),
                 child: Card(
                   elevation: 4,
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        CachedNetworkImage(
-                          height: 130,
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          fit: BoxFit.cover,
-                          imageUrl: imagePreview,
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              title,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                              overflow: TextOverflow.clip,
-                              maxLines: 3,
-                            ),
+                  child: Column(
+                    children: [
+                      CachedNetworkImage(
+                        height: 130,
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        fit: BoxFit.cover,
+                        imageUrl: imagePreview,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2.5,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            title,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.clip,
+                            maxLines: 3,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               );
