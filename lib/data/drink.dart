@@ -2,6 +2,13 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 
+enum DrinkFieldType {
+  category,
+  glass,
+  alcoholic,
+  ingredient,
+}
+
 class Drink extends Equatable {
   final String? id;
   final String? title;
