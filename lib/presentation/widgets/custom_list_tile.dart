@@ -1,5 +1,9 @@
+import 'package:cocktail_app/blocs/category/category_bloc.dart';
+import 'package:cocktail_app/blocs/drink_list/drink_list_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
+import 'package:cocktail_app/presentation/drink_list_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomListTile extends StatelessWidget {
   final List<Drink> list;
@@ -13,37 +17,97 @@ class CustomListTile extends StatelessWidget {
     return ListView.builder(
       itemCount: list.length,
       itemBuilder: ((context, index) {
-        return ListTile(
-          leading: const Icon(Icons.chevron_right),
-          title: _buildFieldTypeText(list, drinkFieldType, index),
-          onTap: () {},
-        );
+        return _buildFieldTypeText(context, list, drinkFieldType, index);
       }),
     );
   }
 
-  Widget _buildFieldTypeText(
-      List<Drink> list, DrinkFieldType drinkFieldType, int index) {
+  Widget _buildFieldTypeText(BuildContext context, List<Drink> list,
+      DrinkFieldType drinkFieldType, int index) {
     switch (drinkFieldType) {
       case DrinkFieldType.category:
-        return Text(
-          list[index].category.toString(),
-          style: const TextStyle(fontSize: 16),
+        var categoryName = list[index].category.toString();
+        return ListTile(
+          leading: const Icon(Icons.chevron_right),
+          title: Text(
+            categoryName,
+            style: const TextStyle(fontSize: 16),
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => DrinkListBloc()
+                  ..add(SearchByCategory(categoryName: categoryName)),
+                child: DrinkListScreen(
+                  title: categoryName,
+                ),
+              ),
+            ),
+          ),
         );
       case DrinkFieldType.glass:
-        return Text(
-          list[index].glass.toString(),
-          style: const TextStyle(fontSize: 16),
+        var glassName = list[index].glass.toString();
+        return ListTile(
+          leading: const Icon(Icons.chevron_right),
+          title: Text(
+            list[index].glass.toString(),
+            style: const TextStyle(fontSize: 16),
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) =>
+                    DrinkListBloc()..add(SearchByGlass(glassName: glassName)),
+                child: DrinkListScreen(
+                  title: glassName,
+                ),
+              ),
+            ),
+          ),
         );
       case DrinkFieldType.alcoholic:
-        return Text(
-          list[index].alcholic.toString(),
-          style: const TextStyle(fontSize: 16),
+        var alcoholicOption = list[index].alcholic.toString();
+        return ListTile(
+          leading: const Icon(Icons.chevron_right),
+          title: Text(
+            list[index].alcholic.toString(),
+            style: const TextStyle(fontSize: 16),
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => DrinkListBloc()
+                  ..add(SearchByAlcoholic(alcoholicOption: alcoholicOption)),
+                child: DrinkListScreen(
+                  title: alcoholicOption,
+                ),
+              ),
+            ),
+          ),
         );
       case DrinkFieldType.ingredient:
-        return Text(
-          list[index].ingredients.toString(),
-          style: const TextStyle(fontSize: 16),
+        var ingredientName = list[index].ingredients.toString();
+        return ListTile(
+          leading: const Icon(Icons.chevron_right),
+          title: Text(
+            list[index].ingredients.toString(),
+            style: const TextStyle(fontSize: 16),
+          ),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => DrinkListBloc()
+                  ..add(SearchByIngredient(ingredientName: ingredientName)),
+                child: DrinkListScreen(
+                  title: ingredientName,
+                ),
+              ),
+            ),
+          ),
         );
       default:
         return Container();
