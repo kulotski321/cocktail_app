@@ -8,10 +8,3 @@ abstract class CategoryEvent extends Equatable {
 }
 
 class GetAllCategories extends CategoryEvent {}
-
-class SearchByCategory extends CategoryEvent {
-  final String categoryName;
-  const SearchByCategory({
-    required this.categoryName,
-  });
-}

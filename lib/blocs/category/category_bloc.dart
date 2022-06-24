@@ -20,18 +20,5 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         ));
       }
     });
-
-    on<SearchByCategory>((event, emit) async {
-      try {
-        emit(CategoryLoading());
-        final categories =
-            await apiRepository.filterByCategory(event.categoryName);
-        emit(CategoryLoaded(categories: categories));
-      } on NetworkError {
-        emit(const CategoryError(
-          message: 'Failed to fetch data. Is your device online?',
-        ));
-      }
-    });
   }
 }
