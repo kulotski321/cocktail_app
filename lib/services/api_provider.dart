@@ -65,7 +65,7 @@ class ApiProvider {
   Future<List<Drink>> fetchIngredients() async {
     Drinks ingredients;
     try {
-      final response = await _dio.get('$_baseUrl/list.php?a=list');
+      final response = await _dio.get('$_baseUrl/list.php?i=list');
       if (response.statusCode == 200) {
         ingredients = Drinks.fromMap(response.data);
         return ingredients.drinks;
