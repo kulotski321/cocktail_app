@@ -3,96 +3,93 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class Drink extends Equatable {
-  final String id;
-  final String title;
-  final String category;
-  final String alchoholic;
-  final String glass;
-  final String instructions;
-  final String image;
-  final List<String> ingredients;
-  final List<String> measures;
+  final String? id;
+  final String? title;
+  final String? category;
+  final String? alcholic;
+  final String? glass;
+  final String? instructions;
+  final String? thumbnail;
 
   const Drink({
-    required this.id,
-    required this.title,
-    required this.category,
-    required this.alchoholic,
-    required this.glass,
-    required this.instructions,
-    required this.image,
-    required this.ingredients,
-    required this.measures,
+    this.id,
+    this.title,
+    this.category,
+    this.alcholic,
+    this.glass,
+    this.instructions,
+    this.thumbnail,
   });
 
   Drink copyWith({
     String? id,
     String? title,
     String? category,
-    String? alchoholic,
+    String? alcholic,
     String? glass,
     String? instructions,
-    String? image,
-    List<String>? ingredients,
-    List<String>? measures,
+    String? thumbnail,
   }) {
     return Drink(
       id: id ?? this.id,
       title: title ?? this.title,
       category: category ?? this.category,
-      alchoholic: alchoholic ?? this.alchoholic,
+      alcholic: alcholic ?? this.alcholic,
       glass: glass ?? this.glass,
       instructions: instructions ?? this.instructions,
-      image: image ?? this.image,
-      ingredients: ingredients ?? this.ingredients,
-      measures: measures ?? this.measures,
+      thumbnail: thumbnail ?? this.thumbnail,
     );
-  }
-
-  @override
-  List<Object> get props {
-    return [
-      id,
-      title,
-      category,
-      alchoholic,
-      glass,
-      instructions,
-      image,
-      ingredients,
-      measures,
-    ];
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'title': title,
-      'category': category,
-      'alchoholic': alchoholic,
-      'glass': glass,
-      'instructions': instructions,
-      'image': image,
-      'ingredients': ingredients,
-      'measures': measures,
+      'idDrink': id,
+      'strDrink': title,
+      'strCategory': category,
+      'strAlcoholic': alcholic,
+      'strGlass': glass,
+      'strInstructions': instructions,
+      'strDrinkThumb': thumbnail,
     };
   }
 
   factory Drink.fromMap(Map<String, dynamic> map) {
     return Drink(
-      id: map['id'],
-      title: map['title'],
-      category: map['category'],
-      alchoholic: map['alchoholic'],
-      glass: map['glass'],
-      instructions: map['instructions'],
-      image: map['image'],
-      ingredients: List<String>.from(map['ingredients']),
-      measures: List<String>.from(map['measures']),
+      id: map['idDrink'],
+      title: map['strDrink'],
+      category: map['strCategory'],
+      alcholic: map['strAlcoholic'],
+      glass: map['strGlass'],
+      instructions: map['strInstructions'],
+      thumbnail: map['strDrinkThumb'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
   factory Drink.fromJson(String source) => Drink.fromMap(json.decode(source));
+
+  @override
+  bool get stringify => true;
+
+  @override
+  List<Object> get props {
+    return [
+      id ?? '',
+      title ?? '',
+      category ?? '',
+      alcholic ?? '',
+      glass ?? '',
+      instructions ?? '',
+      thumbnail ?? '',
+    ];
+  }
 }
+
+//  idDrink: map['idDrink'],
+//       strDrink: map['strDrink'],
+//       strCategory: map['strCategory'],
+//       strAlcoholic: map['strAlcoholic'],
+//       strGlass: map['strGlass'],
+//       strInstructions: map['strInstructions'],
+//       strDrinkThumb: map['strDrinkThumb'],
