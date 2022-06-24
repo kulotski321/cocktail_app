@@ -39,6 +39,10 @@ class ApiRepository {
   Future<List<Drink>> filterByIngredient(String ingredientName) {
     return _provider.filterByIngredient(ingredientName);
   }
+
+  Future<List<Drink>> fetchDrinkDetails(String drinkName) {
+    return _provider.fetchDrinkDetails(drinkName);
+  }
 }
 
 class NetworkError extends Error {}
