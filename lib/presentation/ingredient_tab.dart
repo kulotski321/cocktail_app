@@ -1,5 +1,6 @@
 import 'package:cocktail_app/blocs/ingredient/ingredient_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
+import 'package:cocktail_app/presentation/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -60,19 +61,5 @@ class _IngredientTabState extends State<IngredientTab>
     );
   }
 
-  Widget _buildLoading() => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
-          SizedBox(
-            height: 150,
-          ),
-          Center(
-            child: CircularProgressIndicator(),
-          ),
-          SizedBox(
-            height: 150,
-          ),
-        ],
-      );
+  Widget _buildLoading() => const CustomLoading();
 }
