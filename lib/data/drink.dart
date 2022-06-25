@@ -9,6 +9,7 @@ enum DrinkFieldType {
   ingredient,
 }
 
+// ignore: must_be_immutable
 class Drink extends Equatable {
   final String? id;
   final String? title;
@@ -18,8 +19,10 @@ class Drink extends Equatable {
   final String? ingredients;
   final String? instructions;
   final String? thumbnail;
+  List<String> ingredientsList = [];
+  List<String> measuresList = [];
 
-  const Drink({
+  Drink({
     this.id,
     this.title,
     this.category,
@@ -28,6 +31,8 @@ class Drink extends Equatable {
     this.ingredients,
     this.instructions,
     this.thumbnail,
+    required this.ingredientsList,
+    required this.measuresList,
   });
 
   Drink copyWith({
@@ -39,6 +44,8 @@ class Drink extends Equatable {
     String? ingredients,
     String? instructions,
     String? thumbnail,
+    List<String>? ingredientsList,
+    List<String>? measuresList,
   }) {
     return Drink(
       id: id ?? this.id,
@@ -49,6 +56,8 @@ class Drink extends Equatable {
       ingredients: ingredients ?? this.ingredients,
       instructions: instructions ?? this.instructions,
       thumbnail: thumbnail ?? this.thumbnail,
+      ingredientsList: ingredientsList ?? this.ingredientsList,
+      measuresList: measuresList ?? this.measuresList,
     );
   }
 
@@ -66,6 +75,9 @@ class Drink extends Equatable {
   }
 
   factory Drink.fromMap(Map<String, dynamic> map) {
+    final parsedIngredients = parseIngredients(map);
+    final parsedMeasures = parseMeasures(map);
+
     return Drink(
       id: map['idDrink'],
       title: map['strDrink'],
@@ -75,6 +87,8 @@ class Drink extends Equatable {
       ingredients: map['strIngredient1'],
       instructions: map['strInstructions'],
       thumbnail: map['strDrinkThumb'],
+      ingredientsList: parsedIngredients,
+      measuresList: parsedMeasures,
     );
   }
 
@@ -98,4 +112,24 @@ class Drink extends Equatable {
       thumbnail ?? '',
     ];
   }
+}
+
+List<String> parseIngredients(Map<String, dynamic> map) {
+  List<String> parsedIngredients = [];
+  for (var index = 1;
+      index <= 15 && map['strIngredient$index'] != null;
+      index++) {
+    String ingredient = map['strIngredient$index'] as String;
+    parsedIngredients.add(ingredient);
+  }
+  return parsedIngredients.toList();
+}
+
+List<String> parseMeasures(Map<String, dynamic> map) {
+  List<String> parsedMeasures = [];
+  for (var index = 1; index <= 15 && map['strMeasure$index'] != null; index++) {
+    String measure = map['strMeasure$index'] as String;
+    parsedMeasures.add(measure);
+  }
+  return parsedMeasures.toList();
 }
