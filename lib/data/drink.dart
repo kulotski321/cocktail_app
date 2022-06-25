@@ -116,20 +116,18 @@ class Drink extends Equatable {
 
 List<String> parseIngredients(Map<String, dynamic> map) {
   List<String> parsedIngredients = [];
-  for (var index = 1;
-      index <= 15 && map['strIngredient$index'] != null;
-      index++) {
-    String ingredient = map['strIngredient$index'] as String;
-    parsedIngredients.add(ingredient);
+  for (var index = 1; index <= 15; index++) {
+    String? ingredient = map['strIngredient$index'] as String?;
+    parsedIngredients.add(ingredient ?? '');
   }
-  return parsedIngredients.toList();
+  return parsedIngredients;
 }
 
 List<String> parseMeasures(Map<String, dynamic> map) {
   List<String> parsedMeasures = [];
-  for (var index = 1; index <= 15 && map['strMeasure$index'] != null; index++) {
-    String measure = map['strMeasure$index'] as String;
-    parsedMeasures.add(measure);
+  for (var index = 1; index <= 15; index++) {
+    String? measure = map['strMeasure$index'] as String?;
+    parsedMeasures.add(measure ?? '');
   }
-  return parsedMeasures.toList();
+  return parsedMeasures;
 }
