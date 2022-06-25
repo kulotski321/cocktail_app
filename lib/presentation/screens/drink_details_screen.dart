@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cocktail_app/blocs/drink_details/drink_details_bloc.dart';
 import 'package:cocktail_app/data/drink.dart';
+import 'package:cocktail_app/presentation/widgets/custom_chip_list.dart';
 import 'package:cocktail_app/presentation/widgets/custom_loading.dart';
+import 'package:cocktail_app/presentation/widgets/ingredient_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -71,45 +73,8 @@ class DrinkDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Wrap(
-              runSpacing: 8.0,
-              spacing: 8.0,
-              children: [
-                Chip(
-                  avatar: const Icon(Icons.category),
-                  label: Text(
-                    drink.category.toString(),
-                    style: const TextStyle(
-                      fontFamily: 'Work Sans',
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                Chip(
-                  avatar: const Icon(Icons.sports_bar),
-                  label: Text(
-                    drink.glass.toString(),
-                    style: const TextStyle(
-                      fontFamily: 'Work Sans',
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                Chip(
-                  avatar: const Icon(Icons.water_drop),
-                  label: Text(
-                    drink.alcholic.toString(),
-                    style: const TextStyle(
-                      fontFamily: 'Work Sans',
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _buildChips(drink.category.toString(), drink.glass.toString(),
+              drink.alcholic.toString()),
           SizedBox(
             width: double.infinity,
             child: Padding(
@@ -125,10 +90,16 @@ class DrinkDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+          _buildIngredients(drink),
         ],
       ),
     );
   }
+
+  Widget _buildChips(String category, String glass, String alcoholic) =>
+      CustomChipList(category: category, glass: glass, alcoholic: alcoholic);
+
+  Widget _buildIngredients(Drink drink) => IngredientList(drink: drink);
 
   Widget _buildLoading() => const CustomLoading();
 }
