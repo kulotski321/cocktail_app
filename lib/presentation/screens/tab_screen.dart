@@ -17,6 +17,7 @@ class _TabScreenState extends State<TabScreen> {
   PageController pageController = PageController();
 
   void _onItemTapped(int index) {
+    print(index);
     setState(() {
       _selectedIndex = index;
     });
